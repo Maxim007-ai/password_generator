@@ -9,12 +9,13 @@ class PasswordGenerator:
         self.special_chars = "!@#$%^&*()_+-"
 
     def generate(self, num_lower, num_upper, num_digits, num_special):
-        # Простейшая версия: склеиваем без перемешивания
         lower_part = [random.choice(self.lowercase_chars) for _ in range(num_lower)]
         upper_part = [random.choice(self.uppercase_chars) for _ in range(num_upper)]
         digits_part = [random.choice(self.digits_chars) for _ in range(num_digits)]
         special_part = [random.choice(self.special_chars) for _ in range(num_special)]
-        return ''.join(lower_part + upper_part + digits_part + special_part)
+        password_list = lower_part + upper_part + digits_part + special_part
+        random.shuffle(password_list)
+        return ''.join(password_list)
 
 class PasswordGeneratorGUI:
     def __init__(self, root):
